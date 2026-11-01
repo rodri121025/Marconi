@@ -1,0 +1,61 @@
+# Robot de GitHub: baja las noticias de Italia y publica el sitio en GitHub Pages.
+#
+# Cuándo corre:
+#   · todos los días a las 11:00 y a las 23:00 de Argentina (14:00 y 02:00 en hora UTC, que es la que usa GitHub)
+#   · cada vez que subís cambios a la rama main
+#   · a mano, desde la pestaña Actions → «Publicar sitio y noticias» → «Run workflow»
+#
+# Requisito (una sola vez): Settings → Pages → Source: «GitHub Actions».
+name: Publicar sitio y noticias
+
+on:
+  schedule:
+    - cron: '0 14 * * *'   # 11:00 en Argentina
+    - cron: '0 2 * * *'    # 23:00 en Argentina
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si se superponen dos publicaciones, la segunda espera a que termine la primera
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacion.outputs.page_url }}
+    steps:
+      - name: Copiar el sitio
+        uses: actions/checkout@v7
+
+      - name: Preparar Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Datos de GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Bajar las noticias del Corriere della Sera
+        run: node scripts/noticias.js
+        env:
+          # Si hoy el diario no responde, se conservan las noticias que ya estaban publicadas
+          NOTICIAS_PUBLICADAS: ${{ steps.pages.outputs.base_url }}/datos/noticias.json
+
+      - name: Empaquetar el sitio
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+      - name: Publicar en GitHub Pages
+        id: publicacion
+        uses: actions/deploy-pages@v5
