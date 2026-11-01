@@ -1,0 +1,8 @@
+/* CSS común (no necesita Tailwind): los movimientos de las animaciones.
+   Tailwind los usa con las clases animate-flotar, animate-parpadeo, etc. */
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes parpadeo { 0%, 93%, 100% { opacity: 0; } 95%, 97% { opacity: 1; } }
+@keyframes saludo { 0%, 100% { transform: rotate(0); } 20%, 60% { transform: rotate(18deg); } 40%, 80% { transform: rotate(-10deg); } }
+@keyframes aparecer { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes puntos { 0%, 80%, 100% { transform: translateY(0); opacity: 0.5; } 40% { transform: translateY(-4px); opacity: 1; } }
+@keyframes pulso { 0%, 100% { box-shadow: inset 0 0 0 2px #ce2b37; } 50% { box-shadow: inset 0 0 0 2px #ce2b37, 0 0 0 5px rgb(206 43 55 / 0.18); } }
