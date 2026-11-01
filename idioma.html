@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idioma italiano | Teatro Marconi</title>
+    <link rel="icon" href="imagenes/pestana/icono.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Tailwind CSS: primero el diseño del sitio (colores, letras, piezas), después Tailwind -->
+    <script src="js/tailwind-tema.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3/dist/index.global.js"></script>
+</head>
+<body class="bg-[#fafafa] font-sans leading-[1.6] text-texto" data-titulo-sitio="Teatro Marconi | Sociedad Italiana de Gálvez">
+
+    <!-- Pantalla de carga -->
+    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-opacity duration-500">
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHp0YjZ6cWdhYTNxdWs1dm01OWIwNTBrZ2RyanJ1cHloOGtsMnBxMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h3Yfw6oXELeBOxW8XN/giphy.gif" alt="" class="size-20 rounded-lg object-contain">
+    </div>
+
+    <!-- ===================== MENÚ ===================== -->
+    <nav id="barra" class="sticky top-0 z-[1000] border-b border-[#eee] bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] transition-[box-shadow,border-color] duration-200 data-[fusionada]:border-transparent data-[fusionada]:shadow-none">
+        <div class="flex min-h-[70px] items-center justify-between gap-2.5 px-[18px] lg:grid lg:min-h-[78px] lg:grid-cols-[auto_1fr_auto] lg:gap-4 lg:px-6 xl:grid-cols-[1fr_auto_1fr] xl:px-8">
+            <a href="index.html" class="justify-self-start">
+                <img src="imagenes/pagina-principal/logo.webp" width="360" height="180" data-i18n-alt="comun.marca" alt="Teatro Marconi · Sociedad Italiana · Gálvez" class="h-12 w-auto rounded lg:h-[54px]">
+            </a>
+
+            <!-- Idioma (ES · EN · IT) y botón ☰ del celular -->
+            <div class="flex items-center gap-1 lg:order-last lg:justify-self-end">
+                <div id="idiomas" role="group" data-i18n-aria="comun.idiomas" aria-label="Idioma del sitio" class="flex gap-0.5 rounded-full border border-[#ddd] bg-white p-0.5">
+                    <button type="button" class="boton-idioma" data-idioma-sitio="es" lang="es" aria-label="Español" aria-pressed="true">ES</button>
+                    <button type="button" class="boton-idioma" data-idioma-sitio="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+                    <button type="button" class="boton-idioma" data-idioma-sitio="it" lang="it" aria-label="Italiano" aria-pressed="false">IT</button>
+                </div>
+                <button type="button" id="hamburguesa" class="flex cursor-pointer flex-col gap-[5px] p-2 lg:hidden" data-i18n-aria="comun.abrirMenu" aria-label="Abrir el menú" aria-expanded="false" aria-controls="menu">
+                    <span class="h-0.5 w-6 bg-[#333]"></span><span class="h-0.5 w-6 bg-[#333]"></span><span class="h-0.5 w-6 bg-[#333]"></span>
+                </button>
+            </div>
+
+            <ul id="menu" class="hidden data-[abierto]:flex max-lg:fixed max-lg:inset-x-0 max-lg:top-[70px] max-lg:bottom-0 max-lg:flex-col max-lg:items-center max-lg:gap-1 max-lg:overflow-y-auto max-lg:bg-white max-lg:px-5 max-lg:pt-6 max-lg:pb-10 lg:flex lg:self-stretch lg:items-stretch lg:justify-center lg:gap-5 xl:gap-7">
+                <li class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="index.html" class="menu-enlace" data-i18n="nav.inicio">Inicio</a>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="sociedad.html" class="menu-enlace" data-i18n="nav.sociedad">Sociedad</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesSociedad" aria-label="Mostrar opciones de Sociedad" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="historia.html" class="menu-subenlace" data-i18n="nav.historia">Historia</a></li>
+                        <li><a href="eventos.html" class="menu-subenlace" data-i18n="nav.eventos">Eventos y noticias</a></li>
+                        <li><a href="futuro.html" class="menu-subenlace" data-i18n="nav.futuro">Futuro</a></li>
+                    </ul>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="teatro.html" class="menu-enlace" data-i18n="nav.teatro">Teatro</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesTeatro" aria-label="Mostrar opciones de Teatro" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="funciones.html" class="menu-subenlace" data-i18n="nav.funciones">Funciones</a></li>
+                    </ul>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="microcine.html" class="menu-enlace" data-i18n="nav.microcine">Microcine</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesMicrocine" aria-label="Mostrar opciones de Microcine" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="funciones-microcine.html" class="menu-subenlace" data-i18n="nav.funcionesMicrocine">Funciones</a></li>
+                    </ul>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="cultura.html" class="menu-enlace" data-i18n="nav.cultura">Cultura italiana</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesCultura" aria-label="Mostrar opciones de Cultura italiana" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="noticias.html" class="menu-subenlace" data-i18n="nav.noticias">Noticias</a></li>
+                        <li><a href="gastronomia.html" class="menu-subenlace" data-i18n="nav.culinaria">Culinaria</a></li>
+                        <li><a href="idioma.html" class="menu-subenlace" data-i18n="nav.idioma">Idioma italiano</a></li>
+                    </ul>
+                </li>
+                <li class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="contacto.html" class="menu-enlace" data-i18n="nav.contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="vistas">
+        <!-- CULTURA 4: IDIOMA ITALIANO (texto del borrador + tutor Lorenzo) -->
+        <section data-vista="idioma" data-titulo="Idioma italiano">
+            <div class="cabecera-pagina"><h1 class="titulo-pagina" data-i18n="titulo.idioma">Idioma italiano</h1></div>
+            <div class="contenido-pagina">
+                <div class="contenedor">
+                    <div class="bloque mx-auto max-w-[1040px]">
+                        <div>
+                            <p class="parrafo text-[1.05rem]" data-i18n="idi.intro">El idioma oficial es el italiano, una lengua derivada del latín, al igual que el español, el francés y el portugués.</p>
+                            <p class="parrafo" data-i18n="idi.comunes">Algunas palabras y expresiones comunes son:</p>
+                            <table class="mb-4 w-full overflow-hidden rounded-lg bg-white text-left shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+                                <thead class="bg-verde text-white">
+                                    <tr><th class="px-4 py-2.5 font-semibold" data-i18n="idi.colItaliano">Italiano</th><th class="px-4 py-2.5 font-semibold" data-i18n="idi.colTraduccion">Español</th></tr>
+                                </thead>
+                                <tbody class="divide-y divide-[#eee] text-[#444]">
+                                    <tr><td class="px-4 py-2 font-semibold text-vino" lang="it">Ciao</td><td class="px-4 py-2" data-i18n="idi.ciao">Hola / Chau</td></tr>
+                                    <tr><td class="px-4 py-2 font-semibold text-vino" lang="it">Buongiorno</td><td class="px-4 py-2" data-i18n="idi.buongiorno">Buenos días</td></tr>
+                                    <tr><td class="px-4 py-2 font-semibold text-vino" lang="it">Buonasera</td><td class="px-4 py-2" data-i18n="idi.buonasera">Buenas tardes / noches</td></tr>
+                                    <tr><td class="px-4 py-2 font-semibold text-vino" lang="it">Grazie</td><td class="px-4 py-2" data-i18n="idi.grazie">Gracias</td></tr>
+                                    <tr><td class="px-4 py-2 font-semibold text-vino" lang="it">Per favore</td><td class="px-4 py-2" data-i18n="idi.perfavore">Por favor</td></tr>
+                                    <tr><td class="px-4 py-2 font-semibold text-vino" lang="it">Prego</td><td class="px-4 py-2" data-i18n="idi.prego">De nada</td></tr>
+                                    <tr><td class="px-4 py-2 font-semibold text-vino" lang="it">Ti voglio bene</td><td class="px-4 py-2" data-i18n="idi.tivogliobene">Te quiero</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="parrafo" data-i18n="idi.dialectos">Además del italiano estándar, existen numerosos dialectos y lenguas regionales, como el sardo, el friulano y el napolitano.</p>
+                        </div>
+                        <figure class="foto">
+                            <img src="imagenes/cultura-italiana/4-idioma/idioma.webp" width="547" height="365" data-i18n-alt="idi.alt" alt="Mujer sonriente con una banderita de Italia y libros">
+                        </figure>
+                    </div>
+
+                    <h2 class="mt-16 mb-8 text-center font-serif text-[2rem] font-bold" data-i18n="idi.tutorTitulo">Aprendé italiano con Lorenzo</h2>
+                    <div id="tutor" lang="es" class="mx-auto mb-10 max-w-[920px]">
+                        <div class="mb-9 grid items-center gap-5 justify-items-center md:grid-cols-[200px_1fr] md:justify-items-stretch md:gap-8">
+                            <img id="tutor-robot" src="imagenes/lorenzo/robot-italiano.jpg" alt="" class="h-auto w-[170px] rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] md:w-full">
+                            <div class="w-full">
+                                <p id="tutor-saludo" class="relative mb-4 rounded-[14px] border border-[#e6e6e6] bg-white px-[22px] py-[18px] text-[1.02rem] shadow-[0_4px_16px_rgba(0,0,0,0.06)] before:absolute before:size-4 before:rotate-45 before:border-[#e6e6e6] before:bg-white before:content-[''] max-md:before:-top-[9px] max-md:before:left-1/2 max-md:before:-ml-2 max-md:before:border-t max-md:before:border-l md:before:top-7 md:before:-left-[9px] md:before:border-b md:before:border-l [&_b]:text-[1.1rem] [&_b]:text-verde"><b lang="it">Ciao!</b></p>
+                                <div class="flex flex-wrap items-center gap-2 text-[0.9rem] text-[#555]" role="group" aria-labelledby="tutor-idioma-label">
+                                    <span id="tutor-idioma-label"></span>
+                                    <button type="button" data-idioma="es" lang="es" aria-pressed="true" class="cursor-pointer rounded-full border border-[#ddd] bg-white px-4 py-1.5 text-[0.9rem] text-[#444] aria-pressed:border-verde aria-pressed:bg-verde aria-pressed:text-white">Español</button>
+                                    <button type="button" data-idioma="en" lang="en" aria-pressed="false" class="cursor-pointer rounded-full border border-[#ddd] bg-white px-4 py-1.5 text-[0.9rem] text-[#444] aria-pressed:border-verde aria-pressed:bg-verde aria-pressed:text-white">English</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tutor-niveles" class="grid scroll-mt-[100px] grid-cols-3 gap-1.5 md:gap-2.5"></div>
+                        <p id="tutor-nivel-desc" class="mt-3.5 mb-[26px] text-center text-[#555]"></p>
+                        <div id="tutor-contenido"></div>
+                        <p id="tutor-anuncio" class="sr-only" aria-live="polite"></p>
+                        <noscript><p data-i18n="tutor.sinJs">Para usar el tutor de italiano necesitás tener JavaScript activado.</p></noscript>
+                    </div>
+                    <a href="cultura.html" class="btn-verde" data-i18n="comun.volverCultura">Volver a Cultura italiana</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#111] text-[#ccc]">
+        <div class="border-t border-[#333] p-5 text-center text-[0.8rem] text-[#777]"><p data-i18n="comun.pie">Sitio ALPHA · 2026</p></div>
+    </footer>
+
+    <script src="js/traducciones.js"></script>
+    <script src="js/sitio.js"></script>
+    <script src="js/italiano-lecciones.js"></script>
+    <script src="js/tutor.js"></script>
+    <script src="js/guia-virtual-datos.js"></script>
+    <script src="js/lorenzo-voces.js"></script>
+    <script src="js/guia-virtual.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+TEATRO MARCONI · Sociedad Italiana de Gálvez
+Sitio en español, inglés e italiano · versión con una página por sección
+
+CÓMO ABRIRLO
+  Abrí esta carpeta en VS Code y usá Live Server sobre index.html.
+  Con doble clic también se ve, pero OpenStreetMap bloquea el mapa de Contacto cuando la página se abre como archivo.
+
+QUÉ HAY EN CADA CARPETA
+  index.html y una página por sección (historia.html, cultura.html, contacto.html…)
+  css/estilos.css           animaciones (CSS común)
+  js/tailwind-tema.js       colores, letras y piezas de diseño de Tailwind (se usa en todas las páginas)
+  js/traducciones.js        textos en inglés y en italiano (el español está escrito en cada HTML)
+  js/sitio.js               menú, secciones y botones de idioma ES · EN · IT
+  js/mapa.js                mapa y ruta de Contacto
+  js/tutor.js               tutor de italiano (Lorenzo) · lecciones en js/italiano-lecciones.js
+  js/guia-virtual.js        guía virtual (Lorenzo) · lo que sabe, en js/guia-virtual-datos.js
+  js/lorenzo-voces.js       qué grabación corresponde a cada frase de Lorenzo
+  audio/lorenzo/            voces de Lorenzo en es/, en/ e it/ (un MP3 por frase)
+  js/funciones.js           calendarios de funciones · las funciones, en js/funciones-datos.js
+  js/noticias.js            muestra las noticias de Italia que están en datos/noticias.json
+  imagenes/                 fotos optimizadas, con carpetas como el borrador
+  scripts/noticias.js       robot que baja las noticias del Corriere della Sera
+  .github/workflows/        el horario del robot y la publicación en GitHub Pages (carpeta oculta)
+
+CALENDARIOS DE FUNCIONES (Teatro → Funciones y Microcine → Funciones)
+  Hay uno para cada lugar. Los dos están bloqueados, dicen «Próximamente» y tienen una función DE EJEMPLO.
+  Para desbloquear uno: en js/funciones-datos.js, en la parte del teatro o del microcine,
+  cambiá  abiertas: false  por  abiertas: true  (cada lugar tiene su propio interruptor).
+  Para cargar funciones reales: en ese mismo archivo, cambiá los datos de la función de ejemplo o agregá más.
+
+NOTICIAS DE ITALIA (Sociedad → Eventos y noticias)
+  Las trae un robot de GitHub (GitHub Actions) del Corriere della Sera: entre 6 y 9, todos los días
+  a las 11:00 y a las 23:00 de Argentina. Se muestra el título, un resumen corto y el enlace al artículo,
+  citando al diario. Las noticias quedan en italiano, como las publica el diario.
+
+  Para que funcione en GitHub Pages (una sola vez):
+    1. Subí TODO el contenido de esta carpeta a un repositorio de GitHub, incluida la carpeta oculta .github
+       (en Mac se ven las carpetas ocultas con Cmd + Shift + punto; en Windows, Vista → Elementos ocultos).
+    2. En el repositorio: Settings → Pages → Source: «GitHub Actions».
+    3. Pestaña Actions → «Publicar sitio y noticias» → «Run workflow» (la primera vez, para no esperar al horario).
+  Después el robot corre solo a las 11 y a las 23, y también cada vez que subís cambios a la rama main.
+  GitHub a veces demora unos minutos el horario. Si el repositorio pasa 60 días sin cambios,
+  GitHub pausa los horarios: se reactivan desde la pestaña Actions.
+
+  Para probarlo en tu compu (con Node 18 o más nuevo):  node scripts/noticias.js   y después Live Server.
+  Si el diario cambia la dirección de sus noticias (RSS), se corrige al principio de scripts/noticias.js.
+
+VOZ DE LORENZO
+  Lorenzo dice en voz alta las frases que tienen grabación (presentación, saludo de la burbuja, «no encuentro ese dato»,
+  temas no confirmados, preguntas frecuentes y los 8 pasos del recorrido por el menú), en el idioma elegido.
+  En el encabezado del chat, el botón 🔊 / 🔇 lo silencia (el navegador lo recuerda). Cada mensaje con voz tiene su 🔊 para escucharlo de nuevo.
+  Los navegadores no dejan sonar audio hasta que el visitante toca algo: por eso el saludo de la burbuja
+  suena solo si ya tocó la página antes de que aparezca.
+  Si cambiás el texto de una respuesta grabada, la voz deja de coincidir: grabala de nuevo con el mismo nombre de archivo
+  o borrá su línea en js/lorenzo-voces.js.
+
+CÓMO CAMBIAR UN TEXTO
+  En español: en el HTML de la página.
+  En inglés o italiano: en js/traducciones.js, buscando la clave que figura en data-i18n="…" de ese elemento.
+  Si se cambia un texto, conviene cambiarlo en los tres idiomas.
+  Las respuestas de Lorenzo se editan en js/guia-virtual-datos.js (cada una tiene es, en, it).
+
+DÓNDE VA CADA IMAGEN
+imagenes/contacto/redes-de-contacto.webp
+    original del borrador: Navbars/ILERA 1/6 contacto/ImgContacto.png
+    contacto.html → Medios de contacto: Facebook «Teatro Marconi Gálvez», WhatsApp 3404-408843, Instagram «teatro.marconi» y Gmail (próximamente)
+
+imagenes/cultura-italiana/1-historia-y-origen/coliseo.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/1Card historia y origen/ImgPC1.jpg
+    cultura-historia.html → El Coliseo de Roma.
+
+imagenes/cultura-italiana/1-historia-y-origen/duomo-de-florencia.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/1Card historia y origen/ImgPC3.jpg
+    cultura-historia.html → La catedral de Florencia, con su cúpula renacentista.
+
+imagenes/cultura-italiana/1-historia-y-origen/foro-romano.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/1Card historia y origen/ImgPC2.jpg
+    cultura-historia.html → El Foro Romano.
+
+imagenes/cultura-italiana/1-historia-y-origen/tarjeta.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/1Card historia y origen/ImgCHO1.png
+    cultura.html → tarjeta «Historia y origen»
+
+imagenes/cultura-italiana/2-gastronomia/pasta.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/2Card Gastronomia/ImgCG2.jpg
+    gastronomia.html → Espaguetis con salsa de tomate y albahaca
+
+imagenes/cultura-italiana/2-gastronomia/pizza.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/2Card Gastronomia/ImgCG1.jpg
+    gastronomia.html → Pizza margherita, al estilo napolitano
+
+imagenes/cultura-italiana/2-gastronomia/risotto.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/2Card Gastronomia/ImgCG3.jpg
+    gastronomia.html → Risotto a la milanesa, típico del norte de Italia
+
+imagenes/cultura-italiana/2-gastronomia/tarjeta.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/2Card Gastronomia/Img2C.png
+    cultura.html → tarjeta «Gastronomía»
+
+imagenes/cultura-italiana/3-familia-y-costumbres/almuerzo-del-domingo.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/3Card  costumbres familia/ImgCFC1.png
+    familia.html → Familia de varias generaciones almorzando junta
+
+imagenes/cultura-italiana/3-familia-y-costumbres/cafe-y-plaza.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/3Card  costumbres familia/ImgCFC2.png
+    familia.html → Mesas de un café al aire libre en una plaza italiana
+
+imagenes/cultura-italiana/3-familia-y-costumbres/comida-compartida.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/3Card  costumbres familia/ImgCFC3.png
+    familia.html → Manos que comparten platos de comida en una mesa
+
+imagenes/cultura-italiana/3-familia-y-costumbres/tarjeta.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/3Card  costumbres familia/ImgCard3.png
+    cultura.html → tarjeta «Familia y costumbres»
+
+imagenes/cultura-italiana/4-idioma/idioma.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/4Card idioma/ImgC4.jpg
+    cultura.html → tarjeta «Idioma»
+    idioma.html → Mujer sonriente con una banderita de Italia y libros
+
+imagenes/cultura-italiana/5-bellas-artes/david.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/5Card bellas artes/ImgCBA1.jpg
+    arte.html → El David de Miguel Ángel
+
+imagenes/cultura-italiana/5-bellas-artes/tarjeta.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/5Card bellas artes/ImgC4.png
+    cultura.html → tarjeta «Bellas artes»
+
+imagenes/cultura-italiana/5-bellas-artes/teatro-alla-scala.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/5Card bellas artes/ImgCBA2.jpg
+    arte.html → La sala del Teatro alla Scala de Milán
+
+imagenes/cultura-italiana/5-bellas-artes/venecia.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/5Card bellas artes/ImgCBA3.jpg
+    arte.html → El Gran Canal de Venecia
+
+imagenes/cultura-italiana/6-fiestas-y-tradiciones/carnaval-de-venecia.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/6Card Fiesta y Tradiciones populares/ImgCFTP1.jpg
+    fiestas.html → Personas con máscaras y trajes del Carnaval de Venecia
+
+imagenes/cultura-italiana/6-fiestas-y-tradiciones/palio-de-siena.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/6Card Fiesta y Tradiciones populares/ImgCFTP2.jpg
+    fiestas.html → Carrera de caballos del Palio en la plaza principal de Siena
+
+imagenes/cultura-italiana/6-fiestas-y-tradiciones/pesebre.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/6Card Fiesta y Tradiciones populares/ImgCFTP3.jpg
+    fiestas.html → Pesebre navideño
+
+imagenes/cultura-italiana/6-fiestas-y-tradiciones/tarjeta.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/6Card Fiesta y Tradiciones populares/ImgCard6.png
+    cultura.html → tarjeta «Fiestas y tradiciones populares»
+
+imagenes/cultura-italiana/7-cultura-italiana-en-argentina/banderas.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/7Card La cultura italiana en Argentina/ImgC7.webp
+    cultura.html → tarjeta «La cultura italiana en Argentina»
+    cultura-argentina.html → Banderas de Italia y de Argentina
+
+imagenes/cultura-italiana/portada.webp
+    original del borrador: Navbars/ILERA 1/7 cultura italiana/CARDS/ImgCI1.png
+    cultura.html → Collage de Italia: un pueblo histórico, pizzas y una calle con gente
+
+imagenes/historia/actualidad/estudiantes-1.webp
+    original del borrador: Navbars/ILERA 1/4 historia/actualidad/ImgHW1.png
+    historia.html → Los chicos de la Escuela de Comercio en una sala del edificio
+
+imagenes/historia/actualidad/estudiantes-2.webp
+    original del borrador: Navbars/ILERA 1/4 historia/actualidad/ImgHW2.jpeg
+    historia.html → Foto grupal de los chicos frente al cartel de la Sociedad Italiana de Socorros Mutuos
+
+imagenes/historia/introduccion/fachada.webp
+    original del borrador: Navbars/ILERA 1/4 historia/INTRODUCCION HISTORIA/marconi-12 (1).jpg
+    index.html → Fachada de la Sociedad Italiana de Socorros Mutuos, en Belgrano 654
+    historia.html → Fachada de la Sociedad Italiana de Socorros Mutuos, en Belgrano 654
+    teatro.html → Fachada de la Sociedad Italiana de Socorros Mutuos, en Belgrano 654
+
+imagenes/historia/pre-actualidad/teatro-al-comprarse-2025.webp
+    original del borrador: Navbars/ILERA 1/4 historia/pre actualidad/ImgPA1.png
+    historia.html → Así estaban los baños, los techos y las paredes en 2025.
+
+imagenes/historia/remodelacion/remodelacion-en-curso.webp
+    original del borrador: Navbars/ILERA 1/4 historia/historia de la remodelacion/ImgHW3.png
+    historia.html → Avances de la obra: baños, paredes y butacas.
+    teatro.html → Avances de la obra: baños, paredes y butacas.
+
+imagenes/lorenzo/robot-cara.jpg
+    original del borrador: robot-cara.jpg
+    todas → Cara de Lorenzo (guía virtual y tutor)
+
+imagenes/lorenzo/robot-italiano.jpg
+    original del borrador: robot-italiano.jpg
+    (sin usar)
+
+imagenes/microcine/microcine.webp
+    original del borrador: Navbars/ILERA 1/5 microcine/ImgMC.jpg
+    index.html → Sala del Microcine con sus butacas
+    historia.html → Sala del Microcine con sus butacas
+    futuro.html → Sala del Microcine con sus butacas
+    microcine.html → Sala del Microcine con sus butacas
+
+imagenes/pagina-principal/antes-1.webp
+    original del borrador: Pagina principal/ImgPrincipal2.jpg
+    index.html → Butacas rojas de la sala del teatro, antes de la remodelación
+    teatro.html → Butacas rojas de la sala del teatro, antes de la remodelación
+
+imagenes/pagina-principal/antes-2.webp
+    original del borrador: Pagina principal/ImgPrincipal3.jpg
+    index.html → La sala y el escenario del teatro, antes de la remodelación
+    teatro.html → La sala y el escenario del teatro, antes de la remodelación
+
+imagenes/pagina-principal/antes-3.webp
+    original del borrador: Pagina principal/ImgPrincipal4.jpg
+    index.html → Otra vista de la sala y el escenario, antes de la remodelación
+    teatro.html → Otra vista de la sala y el escenario, antes de la remodelación
+
+imagenes/pagina-principal/logo.webp
+    original del borrador: Pagina principal/LOGO.png
+    todas → Logo del menú
+
+imagenes/pagina-principal/portada.webp
+    original del borrador: Pagina principal/ImgPrincipal1.jpg
+    index.html → Fondo de la portada («El teatro está volviendo»)
+
+imagenes/pestana/icono.png
+    original del borrador: Pestaña/icono de pestaña.jpeg
+    todas → Ícono de la pestaña del navegador

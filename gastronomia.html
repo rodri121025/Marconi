@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastronomía italiana | Teatro Marconi</title>
+    <link rel="icon" href="imagenes/pestana/icono.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Tailwind CSS: primero el diseño del sitio (colores, letras, piezas), después Tailwind -->
+    <script src="js/tailwind-tema.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3/dist/index.global.js"></script>
+</head>
+<body class="bg-[#fafafa] font-sans leading-[1.6] text-texto" data-titulo-sitio="Teatro Marconi | Sociedad Italiana de Gálvez">
+
+    <!-- Pantalla de carga -->
+    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-opacity duration-500">
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHp0YjZ6cWdhYTNxdWs1dm01OWIwNTBrZ2RyanJ1cHloOGtsMnBxMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h3Yfw6oXELeBOxW8XN/giphy.gif" alt="" class="size-20 rounded-lg object-contain">
+    </div>
+
+    <!-- ===================== MENÚ ===================== -->
+    <nav id="barra" class="sticky top-0 z-[1000] border-b border-[#eee] bg-white shadow-[0_1px_8px_rgba(0,0,0,0.06)] transition-[box-shadow,border-color] duration-200 data-[fusionada]:border-transparent data-[fusionada]:shadow-none">
+        <div class="flex min-h-[70px] items-center justify-between gap-2.5 px-[18px] lg:grid lg:min-h-[78px] lg:grid-cols-[auto_1fr_auto] lg:gap-4 lg:px-6 xl:grid-cols-[1fr_auto_1fr] xl:px-8">
+            <a href="index.html" class="justify-self-start">
+                <img src="imagenes/pagina-principal/logo.webp" width="360" height="180" data-i18n-alt="comun.marca" alt="Teatro Marconi · Sociedad Italiana · Gálvez" class="h-12 w-auto rounded lg:h-[54px]">
+            </a>
+
+            <!-- Idioma (ES · EN · IT) y botón ☰ del celular -->
+            <div class="flex items-center gap-1 lg:order-last lg:justify-self-end">
+                <div id="idiomas" role="group" data-i18n-aria="comun.idiomas" aria-label="Idioma del sitio" class="flex gap-0.5 rounded-full border border-[#ddd] bg-white p-0.5">
+                    <button type="button" class="boton-idioma" data-idioma-sitio="es" lang="es" aria-label="Español" aria-pressed="true">ES</button>
+                    <button type="button" class="boton-idioma" data-idioma-sitio="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+                    <button type="button" class="boton-idioma" data-idioma-sitio="it" lang="it" aria-label="Italiano" aria-pressed="false">IT</button>
+                </div>
+                <button type="button" id="hamburguesa" class="flex cursor-pointer flex-col gap-[5px] p-2 lg:hidden" data-i18n-aria="comun.abrirMenu" aria-label="Abrir el menú" aria-expanded="false" aria-controls="menu">
+                    <span class="h-0.5 w-6 bg-[#333]"></span><span class="h-0.5 w-6 bg-[#333]"></span><span class="h-0.5 w-6 bg-[#333]"></span>
+                </button>
+            </div>
+
+            <ul id="menu" class="hidden data-[abierto]:flex max-lg:fixed max-lg:inset-x-0 max-lg:top-[70px] max-lg:bottom-0 max-lg:flex-col max-lg:items-center max-lg:gap-1 max-lg:overflow-y-auto max-lg:bg-white max-lg:px-5 max-lg:pt-6 max-lg:pb-10 lg:flex lg:self-stretch lg:items-stretch lg:justify-center lg:gap-5 xl:gap-7">
+                <li class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="index.html" class="menu-enlace" data-i18n="nav.inicio">Inicio</a>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="sociedad.html" class="menu-enlace" data-i18n="nav.sociedad">Sociedad</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesSociedad" aria-label="Mostrar opciones de Sociedad" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="historia.html" class="menu-subenlace" data-i18n="nav.historia">Historia</a></li>
+                        <li><a href="eventos.html" class="menu-subenlace" data-i18n="nav.eventos">Eventos y noticias</a></li>
+                        <li><a href="futuro.html" class="menu-subenlace" data-i18n="nav.futuro">Futuro</a></li>
+                    </ul>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="teatro.html" class="menu-enlace" data-i18n="nav.teatro">Teatro</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesTeatro" aria-label="Mostrar opciones de Teatro" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="funciones.html" class="menu-subenlace" data-i18n="nav.funciones">Funciones</a></li>
+                    </ul>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="microcine.html" class="menu-enlace" data-i18n="nav.microcine">Microcine</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesMicrocine" aria-label="Mostrar opciones de Microcine" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="funciones-microcine.html" class="menu-subenlace" data-i18n="nav.funcionesMicrocine">Funciones</a></li>
+                    </ul>
+                </li>
+                <li data-desplegable class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="cultura.html" class="menu-enlace" data-i18n="nav.cultura">Cultura italiana</a>
+                    <button type="button" class="flechita" data-i18n-aria="nav.opcionesCultura" aria-label="Mostrar opciones de Cultura italiana" aria-expanded="false"><span class="flechita-icono"></span></button>
+                    <ul class="menu-desplegable">
+                        <li><a href="noticias.html" class="menu-subenlace" data-i18n="nav.noticias">Noticias</a></li>
+                        <li><a href="gastronomia.html" class="menu-subenlace" data-i18n="nav.culinaria">Culinaria</a></li>
+                        <li><a href="idioma.html" class="menu-subenlace" data-i18n="nav.idioma">Idioma italiano</a></li>
+                    </ul>
+                </li>
+                <li class="group relative flex items-center max-lg:w-full max-lg:max-w-[360px] max-lg:flex-wrap max-lg:justify-center">
+                    <a href="contacto.html" class="menu-enlace" data-i18n="nav.contacto">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="vistas">
+        <!-- CULTURA 2: GASTRONOMÍA (Culinaria) -->
+        <section data-vista="gastronomia" data-titulo="Gastronomía italiana">
+            <div class="cabecera-pagina"><h1 class="titulo-pagina" data-i18n="titulo.gastronomia">Gastronomía italiana</h1></div>
+            <div class="contenido-pagina">
+                <div class="contenedor max-w-[1040px]">
+                    <p class="mb-6 text-[1.1rem] text-[#444]" data-i18n="gas.intro">La comida es una parte fundamental de la cultura italiana. Algunos platos tradicionales son:</p>
+                    <ul class="grilla-temas">
+                        <li class="tarjeta-tema"><img src="imagenes/cultura-italiana/2-gastronomia/pizza.webp" width="500" height="500" data-i18n-alt="gas.altPizza" alt="Pizza margherita, al estilo napolitano"><div class="tarjeta-tema-texto"><h3 data-i18n="gas.pizzaT">Pizza</h3><p data-i18n="gas.pizzaD">Especialmente famosa la pizza napolitana.</p></div></li>
+                        <li class="tarjeta-tema"><img src="imagenes/cultura-italiana/2-gastronomia/pasta.webp" width="640" height="427" data-i18n-alt="gas.altPasta" alt="Espaguetis con salsa de tomate y albahaca"><div class="tarjeta-tema-texto"><h3 data-i18n="gas.pastaT">Pasta</h3><p data-i18n="gas.pastaD">Como los espaguetis, los ravioles y la lasaña.</p></div></li>
+                        <li class="tarjeta-tema"><img src="imagenes/cultura-italiana/2-gastronomia/risotto.webp" width="640" height="427" data-i18n-alt="gas.altRisotto" alt="Risotto a la milanesa, típico del norte de Italia"><div class="tarjeta-tema-texto"><h3 data-i18n="gas.risottoT">Risotto</h3><p data-i18n="gas.risottoD">Arroz preparado de forma cremosa con distintos ingredientes.</p></div></li>
+                        <li class="tarjeta-tema"><div class="tarjeta-tema-texto"><h3 data-i18n="gas.gelatoT">Gelato</h3><p data-i18n="gas.gelatoD">Helado tradicional italiano.</p></div></li>
+                        <li class="tarjeta-tema"><div class="tarjeta-tema-texto"><h3 data-i18n="gas.tiramisuT">Tiramisú</h3><p data-i18n="gas.tiramisuD">Postre elaborado con café, queso mascarpone y bizcochos.</p></div></li>
+                    </ul>
+                    <p class="parrafo" data-i18n="gas.regiones">Las recetas cambian según la región. Por ejemplo, en el norte son comunes algunos platos con arroz y manteca, mientras que en el sur se destacan el aceite de oliva, el tomate y las preparaciones con pasta.</p>
+                    <a href="cultura.html" class="btn-verde mt-5" data-i18n="comun.volverCultura">Volver a Cultura italiana</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#111] text-[#ccc]">
+        <div class="border-t border-[#333] p-5 text-center text-[0.8rem] text-[#777]"><p data-i18n="comun.pie">Sitio ALPHA · 2026</p></div>
+    </footer>
+
+    <script src="js/traducciones.js"></script>
+    <script src="js/sitio.js"></script>
+    <script src="js/guia-virtual-datos.js"></script>
+    <script src="js/lorenzo-voces.js"></script>
+    <script src="js/guia-virtual.js"></script>
+</body>
+</html>
